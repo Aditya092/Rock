@@ -46,7 +46,7 @@ function game(playerChoice, computerChoice) {
     else if (playerChoice == "scissor" && computerChoice == "rock")
         won("computer");
     else if (playerChoice == "scissor" && computerChoice == "paper")
-        won("computer");
+        won("player");
     else
         alert("Wrong inputs")
 }
