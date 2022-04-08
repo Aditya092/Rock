@@ -3,6 +3,10 @@
 let pScoreboard = document.querySelector('.p-count');
 let cScoreboard = document.querySelector('.c-count');
 let roundResult = document.querySelector('.result');
+let computerChoiceSpan = document.querySelector('.computerChoice');
+let userChoiceSpan = document.querySelector('.userChoice');
+let winnerPannel = document.querySelector('.winner');
+
 //setting score variables for player & computer to track score
 let playerScore = 0;
 let computerScore = 0;
@@ -15,10 +19,12 @@ const gameOptions = ["rock", "paper", "scissor"];
 function computerChoose() {
   const randomNum = Math.floor(Math.random() * 3);
     computerChoice = gameOptions[randomNum];
+    computerChoiceSpan.innerHTML = computerChoice;
 }
 
 function userChoice(choice) {
     playerChoice = gameOptions[choice];
+    userChoiceSpan.innerHTML = playerChoice;
     computerChoose();
     game(playerChoice,computerChoice);
 }
@@ -50,14 +56,19 @@ function won(winner) {
         roundResult.innerHTML = "You have won against the UNDERTAKER!!!!";
         playerScore = playerScore + 1;
         pScoreboard.innerHTML = playerScore;
+        winnerPannel.src = "https://images.unsplash.com/photo-1600804889194-e6fbf08ddb39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29vbCUyMGd1eXxlbnwwfHwwfHw%3D&w=1000&q=80";
     }
     else if (winner == "computer") {
         roundResult.innerHTML = "bro really lost to a computer";
         computerScore = computerScore + 1;
         cScoreboard.innerHTML = computerScore;
+        winnerPannel.src = "https://www.arabnews.com/sites/default/files/styles/n_670_395/public/2022/03/31/3153796-58534237.jpg?itok=FrZCRb0c";
     }
-    else
+    else {
         roundResult.innerHTML = "It's a tie!!!!";
+        winnerPannel.src = "https://i.ytimg.com/vi/8Le6FwpIkg0/maxresdefault.jpg";
+    }
+    winnerPannel.style.display = "block";
 }
 
 function resetGame() {
@@ -66,4 +77,7 @@ function resetGame() {
     pScoreboard.innerHTML = playerScore;
     computerScore = 0;
     cScoreboard.innerHTML = computerScore;
+    userChoiceSpan.innerHTML = "";
+    computerChoiceSpan.innerHTML = "";
+    winnerPannel.style.display = "none";
 }
